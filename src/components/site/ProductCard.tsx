@@ -1,22 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import type { Product } from "@/data/products";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
-export function ProductCard({
-  product,
-  image,
-  featured = false,
-}: {
-  product: Product;
-  image?: string;
-  featured?: boolean;
-}) {
+export function ProductCard({ product, image }: { product: Product; image?: string }) {
   return (
-    <article
-      className={`group flex h-full flex-col border bg-card transition-colors ${
-        featured ? "border-primary/50" : "border-border hover:border-primary/40"
-      }`}
-    >
+    <article className="group flex h-full flex-col border border-border bg-card transition-colors hover:border-primary/40">
       <ImagePlaceholder
         src={image}
         alt={product.name}
@@ -24,9 +11,9 @@ export function ProductCard({
         label="Фото продукта"
       />
       <div className="flex flex-1 flex-col p-6">
-        <p className="eyebrow">{featured ? "Визитная карточка" : product.category}</p>
+        <p className="eyebrow">{product.category}</p>
         <h3 className="mt-2 font-display text-2xl leading-tight">{product.name}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {product.description}
         </p>
         {product.note ? (
@@ -44,13 +31,12 @@ export function ProductCard({
             <dd className="font-medium">{product.availability}</dd>
           </div>
         </dl>
-        <Link
-          to="/products/$slug"
-          params={{ slug: product.slug }}
+        <button
+          type="button"
           className="mt-5 w-fit text-xs font-semibold uppercase tracking-[0.16em] text-primary underline decoration-sage underline-offset-8 hover:decoration-primary"
         >
           Подробнее
-        </Link>
+        </button>
       </div>
     </article>
   );

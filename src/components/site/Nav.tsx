@@ -5,12 +5,12 @@ import { FirIcon } from "./FirIcon";
 
 export const navItems = [
   { to: "/", label: "Главная" },
-  { to: "/about", label: "О бренде" },
-  { to: "/products", label: "Продукция" },
-  { to: "/forests", label: "О наших лесах" },
-  { to: "/recipes", label: "Рецепты" },
-  { to: "/how-to-buy", label: "Как купить" },
-  { to: "/contacts", label: "Контакты" },
+  { to: "/o-brende", label: "О бренде" },
+  { to: "/produkciya", label: "Продукция" },
+  { to: "/lesa", label: "О наших лесах" },
+  { to: "/recepty", label: "Рецепты" },
+  { to: "/kak-kupit", label: "Как купить" },
+  { to: "/kontakty", label: "Контакты" },
 ] as const;
 
 export function Nav() {
@@ -26,7 +26,7 @@ export function Nav() {
               Лесные устрицы
             </span>
             <span className="mt-1 hidden text-[0.62rem] uppercase tracking-[0.2em] text-muted-foreground sm:block">
-              Деликатесы северного леса
+              Дикорастущие грибы северного леса
             </span>
           </span>
         </Link>
