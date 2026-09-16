@@ -201,3 +201,17 @@ export const products: Product[] = [
     ...P,
   },
 ];
+
+/** Visual priority for the homepage grid: signature, bestseller, salted, then rest. */
+export const homeCatalogue: Product[] = [
+  "belye-marinovannye",
+  "belye-sushenye",
+  "belye-gruzdi",
+  "solenye-mlechniki",
+  "sous-belye-slivki-syr",
+  "lisichki-sushenye",
+  "moroshka",
+  "brusnichnyy-sous",
+]
+  .map((slug) => products.find((p) => p.slug === slug))
+  .filter((p): p is Product => Boolean(p));

@@ -232,7 +232,7 @@ function Home() {
                 <dt className="text-sage">Наличие</dt>
                 <dd>{signature.availability}</dd>
               </div>
-            </dl>
+            </div>
             <div className="mt-9">
               <BtnLink
                 to="/products/$slug"
@@ -343,11 +343,11 @@ function Home() {
               </BtnLink>
             </div>
           </div>
-          <dl className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {contactFields.map((t) => (
               <ContactBlock key={t} label={t} invert />
             ))}
-          </dl>
+          </div>
         </div>
       </Section>
     </>
