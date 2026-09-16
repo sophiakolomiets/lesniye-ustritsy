@@ -15,7 +15,7 @@ export const productCategories = [
   "Замороженные",
   "Маринованные",
   "Солёные",
-  "Грибные продукты",
+  "Другие продукты",
   "Ягоды",
   "Продукты из ягод",
 ] as const;
@@ -126,21 +126,21 @@ export const products: Product[] = [
   {
     slug: "sous-belye-slivki-syr",
     name: "Соус из белых грибов в сливках с сыром",
-    category: "Грибные продукты",
+    category: "Другие продукты",
     description: "Готовый соус из белых грибов.",
     ...P,
   },
   {
     slug: "smorchki-konservirovannye",
     name: "Сморчки приготовленные, консервированные",
-    category: "Грибные продукты",
+    category: "Другие продукты",
     description: "Приготовленные сморчки в консервации.",
     ...P,
   },
   {
     slug: "lisichki-konservirovannye",
     name: "Лисички приготовленные, консервированные",
-    category: "Грибные продукты",
+    category: "Другие продукты",
     description: "Приготовленные лисички в консервации.",
     ...P,
   },
@@ -201,3 +201,17 @@ export const products: Product[] = [
     ...P,
   },
 ];
+
+/** Visual priority for the homepage grid: signature, bestseller, salted, then rest. */
+export const homeCatalogue: Product[] = [
+  "belye-marinovannye",
+  "belye-sushenye",
+  "belye-gruzdi",
+  "solenye-mlechniki",
+  "sous-belye-slivki-syr",
+  "lisichki-sushenye",
+  "moroshka",
+  "brusnichnyy-sous",
+]
+  .map((slug) => products.find((p) => p.slug === slug))
+  .filter((p): p is Product => Boolean(p));
