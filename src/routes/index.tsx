@@ -1,49 +1,41 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { BtnLink } from "@/components/site/Btn";
 import { FirDivider, FirIcon } from "@/components/site/FirIcon";
 import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { ProductCard } from "@/components/site/ProductCard";
 import { RecipeCard } from "@/components/site/RecipeCard";
 import { ReviewsPlaceholder } from "@/components/site/ReviewsPlaceholder";
-import { ReviewsHeading, Section, SectionHeading } from "@/components/site/SectionExports";
-import { products } from "@/data/products";
+import { ContactBlock, contactFields } from "@/components/site/ContactBlock";
+import { Section, SectionHeading } from "@/components/site/Section";
+import { homeCatalogue, products } from "@/data/products";
 import heroForest from "@/assets/hero-forest.jpg";
 import portrait from "@/assets/portrait-andrey.jpg";
-import featured from "@/assets/featured-marinated.jpg";
+import featuredImage from "@/assets/featured-marinated.jpg";
 import forestsWide from "@/assets/forests-wide.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Лесные устрицы — дикорастущие грибы и лесные продукты" },
+      { title: "Лесные устрицы — деликатесы северного леса" },
       {
         name: "description",
         content:
-          "Дикорастущие грибы и лесные продукты северного леса. Семейный бренд Андрея Ильича Егорова, Винницы, Ленинградская область.",
+          "Дикорастущие грибы и лесные продукты из северо-востока Ленинградской области. Личный бренд Андрея Ильича Егорова.",
       },
-      { property: "og:title", content: "Лесные устрицы — дикорастущие грибы северного леса" },
+      { property: "og:title", content: "Лесные устрицы — деликатесы северного леса" },
       {
         property: "og:description",
         content:
-          "Дикорастущие грибы и лесные продукты северного леса. Собственный сбор, отбор и переработка.",
+          "Грибы, ягоды и продукты из них: коллекция бренда Андрея Ильича Егорова.",
       },
     ],
   }),
   component: Home,
 });
 
-const journey = ["Лес", "Сбор", "Отбор", "Переработка", "Готовый продукт"];
-
-const originFacts = [
-  { title: "Винницы", text: "Село, вокруг которого строится вся работа бренда." },
-  { title: "Ленинградская область", text: "Северо-восток региона, северные леса." },
-  { title: "Граница с Вологодской областью", text: "Малолюдные лесные территории." },
-  { title: "Вепсская культура", text: "Исторический культурный регион вепсов." },
-  { title: "Веппский лес", text: "Природная территория, давшая имя ассорти." },
-];
+const processSteps = ["Природа", "Сбор", "Отбор", "Переработка", "Готовый продукт"];
 
 function Home() {
-  const catalogue = products.slice(0, 8);
   const signature = products.find((p) => p.slug === "belye-marinovannye")!;
 
   return (
@@ -52,28 +44,27 @@ function Home() {
       <section className="relative isolate">
         <img
           src={heroForest}
-          alt="Северный лес в утреннем тумане"
+          alt="Северный лес в утреннем свете"
           width={1920}
           height={1200}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-forest-deep/65" />
-        <div className="relative mx-auto flex min-h-[88vh] w-full max-w-6xl flex-col justify-end px-5 py-20 sm:px-8 md:min-h-[92vh]">
+        <div className="relative mx-auto flex min-h-[86vh] w-full max-w-6xl flex-col justify-end px-5 py-20 sm:px-8">
           <FirIcon className="h-10 w-7 text-sage" />
           <h1 className="mt-6 max-w-3xl text-5xl leading-[1.02] text-primary-foreground sm:text-7xl md:text-8xl">
             «Лесные устрицы»
           </h1>
-          <p className="mt-6 max-w-2xl font-display text-2xl leading-snug text-sage sm:text-3xl">
-            Дикорастущие грибы и лесные продукты северного леса
+          <p className="mt-6 font-display text-2xl leading-snug text-sage sm:text-3xl">
+            Деликатесы северного леса
           </p>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-primary-foreground/85 sm:text-base">
-            Село Винницы, северо-восток Ленинградской области. Личный бренд Андрея
-            Ильича Егорова: собственный сбор, тщательный отбор и переработка лесных
-            даров.
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-primary-foreground/90 sm:text-base">
+            Дикорастущие грибы и лесные продукты из северо-востока Ленинградской
+            области. Личный бренд Андрея Ильича Егорова.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <BtnLink to="/produkciya">Смотреть продукцию</BtnLink>
-            <BtnLink to="/o-brende" variant="invert">
+            <BtnLink to="/products">Смотреть продукцию</BtnLink>
+            <BtnLink to="/about" variant="invert">
               О бренде
             </BtnLink>
           </div>
@@ -86,90 +77,130 @@ function Home() {
           <div className="order-2 md:order-1">
             <p className="eyebrow">О бренде</p>
             <h2 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">
-              Человек, который знает этот лес
+              Там, где начинается настоящий вкус
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              За брендом стоит Андрей Ильич Егоров. Многие годы он собирает и
-              перерабатывает дикорастущие грибы и другие лесные продукты в северной
-              части Ленинградской области.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Знание леса, личный опыт и внимание к качеству определяют всё: какие
-              места выбирать, что взять, а что оставить, и как обращаться с сырьём
-              дальше.
-            </p>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
+              <p>
+                История «Лесных устриц» начинается с человека, который знает лес.
+              </p>
+              <p>
+                Андрей Ильич Егоров много лет работает с дикорастущими грибами и другими
+                дарами северной природы.
+              </p>
+              <p>
+                Он знает, где искать, что выбрать и как сохранить главное — вкус
+                настоящего продукта.
+              </p>
+              <p>Из этого опыта постепенно вырос бренд.</p>
+              <p>
+                Сегодня «Лесные устрицы» — это коллекция грибов, ягод и продуктов из них:
+                от классических сушёных и солёных грибов до маринадов, соусов и других
+                заготовок.
+              </p>
+            </div>
             <div className="mt-8">
-              <BtnLink to="/o-brende" variant="outline">
-                Подробнее
+              <BtnLink to="/about" variant="outline">
+                История бренда
               </BtnLink>
             </div>
           </div>
           <div className="order-1 md:order-2">
             <ImagePlaceholder
               src={portrait}
-              alt="Портрет Андрея Егорова"
+              alt="Портрет Андрея Ильича Егорова"
               ratio="portrait"
               label="Портрет"
             />
             <p className="mt-3 text-xs text-muted-foreground">
-              Временное изображение. Будет заменено реальной фотографией.
+              Временное изображение — будет заменено реальной фотографией.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* ORIGIN */}
-      <Section tone="sand">
-        <SectionHeading
-          eyebrow="Происхождение"
-          title="Откуда всё начинается"
-          intro="Северные леса на границе Ленинградской и Вологодской областей, вепсский культурный регион."
+      {/* NORTHERN REGION */}
+      <section className="relative isolate">
+        <img
+          src={forestsWide}
+          alt="Северная тайга"
+          loading="lazy"
+          width={1920}
+          height={1008}
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-          <ImagePlaceholder
-            src={forestsWide}
-            alt="Северный лес рядом с Винницами"
-            ratio="landscape"
-          />
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
-            {originFacts.map((f) => (
-              <li key={f.title} className="border-l border-sage pl-5">
-                <p className="font-display text-2xl leading-tight">{f.title}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{f.text}</p>
-              </li>
-            ))}
-          </ul>
+        <div className="absolute inset-0 bg-forest-deep/65" />
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-24 text-primary-foreground sm:px-8 md:py-36">
+          <p className="eyebrow text-sage">Происхождение</p>
+          <h2 className="mt-4 text-4xl leading-[1.05] sm:text-6xl">Северный край</h2>
+          <div className="mt-6 max-w-xl space-y-4 text-base leading-relaxed text-primary-foreground/90">
+            <p>Веппский лес — особенное место.</p>
+            <p>
+              Здесь природа кажется масштабнее человека, расстояния — больше, а лес
+              уходит далеко за горизонт.
+            </p>
+            <p>
+              Это северо-восток Ленинградской области — край, связанный с Вепсской
+              культурой и многовековой историей взаимодействия человека с природой.
+            </p>
+            <p>Для «Лесных устриц» это не просто точка на карте.</p>
+            <p>Это место, откуда начинается путь продукта.</p>
+          </div>
+          <div className="mt-10">
+            <BtnLink to="/forests" variant="invert">
+              О наших лесах
+            </BtnLink>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-16 border-t border-border pt-10">
-          <ol className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {journey.map((step, i) => (
-              <li key={step} className="flex items-start gap-3">
-                <span className="font-display text-3xl text-sage">{`0${i + 1}`}</span>
-                <span className="pt-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
-                  {step}
-                </span>
-              </li>
-            ))}
-          </ol>
+      {/* WHY THE NAME */}
+      <Section tone="sand">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">Имя</p>
+          <h2 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">
+            Почему «Лесные устрицы»?
+          </h2>
+          <FirDivider className="mt-8" />
+          <div className="mt-8 space-y-4 text-left text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p>
+              Устрицы — один из самых известных природных деликатесов моря.
+            </p>
+            <p>
+              Они стали символом редкого удовольствия: простого по форме, но особенного
+              по вкусу.
+            </p>
+            <p>Мы перенесли этот образ с моря в лес.</p>
+            <p>Потому что у северной природы тоже есть свои деликатесы.</p>
+            <p>
+              Грибы, ягоды, морошка, грузди, лисички, сморчки — продукты, которые не
+              нужно создавать искусственно. Их уже создала природа.
+            </p>
+            <p>
+              Так появился образ «Лесных устриц» — лесной интерпретации природного
+              деликатеса.
+            </p>
+          </div>
         </div>
       </Section>
 
       {/* PRODUCTS */}
       <Section>
         <SectionHeading
-          eyebrow="Каталог"
-          title="Наша продукция"
-          intro="Сушёные, солёные, маринованные и замороженные грибы, готовые грибные продукты, лесные ягоды. Цены и наличие будут указаны позже."
+          eyebrow="Продукция"
+          title="Коллекция"
+          intro="Дикорастущие грибы и продукты северного леса. Цены и наличие будут указаны позже."
         />
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {catalogue.map((p) => (
-            <ProductCard key={p.slug} product={p} />
+          {homeCatalogue.map((p) => (
+            <ProductCard key={p.slug} product={p} featured={p.slug === signature.slug} />
           ))}
         </div>
-        <div className="mt-12">
-          <BtnLink to="/produkciya" variant="outline">
-            Весь каталог
+        <p className="mt-8 text-sm text-muted-foreground">
+          Ассортимент может меняться в зависимости от сезона и наличия.
+        </p>
+        <div className="mt-10">
+          <BtnLink to="/products" variant="outline">
+            Вся коллекция
           </BtnLink>
         </div>
       </Section>
@@ -178,20 +209,20 @@ function Home() {
       <Section tone="forest">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
           <ImagePlaceholder
-            src={featured}
-            alt="Белые маринованные грибы"
+            src={featuredImage}
+            alt="Белые маринованные"
             ratio="landscape"
             label="Фото продукта"
           />
           <div>
-            <p className="eyebrow text-sage">Визитная карточка бренда</p>
+            <p className="eyebrow text-sage">Визитная карточка</p>
             <h2 className="mt-4 text-4xl leading-[1.05] sm:text-6xl">
               Белые маринованные
             </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-sage">
-              {signature.description} Главный продукт «Лесных устриц» — с него чаще
-              всего начинается знакомство с брендом.
-            </p>
+            <div className="mt-6 max-w-md space-y-4 text-base leading-relaxed text-sage">
+              <p>Белый гриб — классика северного леса.</p>
+              <p>В «Лесных устрицах» ему отведено особое место.</p>
+            </div>
             <dl className="mt-8 grid max-w-xs gap-2 border-t border-sage/30 pt-5 text-sm text-primary-foreground/90">
               <div className="flex justify-between">
                 <dt className="text-sage">Цена</dt>
@@ -202,87 +233,37 @@ function Home() {
                 <dd>{signature.availability}</dd>
               </div>
             </dl>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <BtnLink to="/kak-kupit" variant="invert">
-                Как купить
-              </BtnLink>
-              <Link
-                to="/produkciya"
-                className="self-center text-xs font-semibold uppercase tracking-[0.16em] text-sage underline underline-offset-8"
+            <div className="mt-9">
+              <BtnLink
+                to="/products/$slug"
+                params={{ slug: signature.slug }}
+                variant="invert"
               >
                 Подробнее
-              </Link>
+              </BtnLink>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* QUALITY */}
+      {/* PROCESS */}
       <Section>
-        <SectionHeading
-          eyebrow="Качество"
-          title="Почему это другой продукт"
-          align="center"
-        />
-        <FirDivider className="mt-8" />
-        <div className="mt-14 grid gap-10 md:grid-cols-3">
-          {[
-            {
-              t: "Собственный сбор",
-              d: "Подавляющее большинство сырья собирается самостоятельно — примерно 70–100% в зависимости от продукта.",
-            },
-            {
-              t: "Северный регион",
-              d: "Леса северо-востока Ленинградской области, на границе с Вологодской.",
-            },
-            {
-              t: "Отбор и переработка",
-              d: "Сырьё проходит ручной отбор, переработка выполняется небольшими партиями.",
-            },
-          ].map((c) => (
-            <div key={c.t}>
-              <FirIcon className="h-7 w-5 text-sage" />
-              <h3 className="mt-4 text-2xl">{c.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
-            </div>
+        <SectionHeading eyebrow="Процесс" title="Путь продукта" align="center" />
+        <ol className="mt-14 grid gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          {processSteps.map((step, i) => (
+            <li key={step} className="border-t border-border pt-5">
+              <span className="font-display text-3xl text-sage">{`0${i + 1}`}</span>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+                {step}
+              </p>
+            </li>
           ))}
-        </div>
-        <p className="mx-auto mt-14 max-w-xl text-center font-display text-2xl leading-snug">
-          Качество — главная ценность бренда.
-        </p>
+        </ol>
       </Section>
-
-      {/* OUR FORESTS */}
-      <section className="relative isolate">
-        <img
-          src={forestsWide}
-          alt="Северная тайга"
-          loading="lazy"
-          width={1920}
-          height={1008}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-forest-deep/60" />
-        <div className="relative mx-auto w-full max-w-6xl px-5 py-28 text-primary-foreground sm:px-8 md:py-40">
-          <p className="eyebrow text-sage">Территория</p>
-          <h2 className="mt-4 max-w-2xl text-4xl leading-[1.05] sm:text-6xl">
-            О наших лесах
-          </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/90">
-            Тихие северные леса, мох, ельники и болота. Здесь всё зависит от сезона,
-            погоды и знания мест — и именно поэтому у каждого урожая свой характер.
-          </p>
-          <div className="mt-10">
-            <BtnLink to="/lesa" variant="invert">
-              Подробнее
-            </BtnLink>
-          </div>
-        </div>
-      </section>
 
       {/* RECIPES */}
       <Section tone="sand">
-        <SectionHeading eyebrow="Кухня" title="Рецепты и полезности" />
+        <SectionHeading eyebrow="Кухня" title="Рецепты" />
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {["Блюда с белыми грибами", "Рецепты с груздями", "Соус из белых грибов"].map(
             (t) => (
@@ -291,15 +272,15 @@ function Home() {
           )}
         </div>
         <div className="mt-12">
-          <BtnLink to="/recepty" variant="outline">
-            Все материалы
+          <BtnLink to="/recipes" variant="outline">
+            Все рецепты
           </BtnLink>
         </div>
       </Section>
 
       {/* REVIEWS */}
       <Section>
-        <ReviewsHeading />
+        <SectionHeading eyebrow="Обратная связь" title="Отзывы" />
         <div className="mt-12">
           <ReviewsPlaceholder />
         </div>
@@ -310,7 +291,7 @@ function Home() {
         <SectionHeading
           eyebrow="Покупка"
           title="Как купить?"
-          intro="Мы работаем с частными покупателями напрямую. Сайт ведёт к личному контакту — так проще подобрать продукт и обсудить наличие."
+          intro="Мы работаем с частными покупателями напрямую. Информация о покупке будет добавлена позже."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {["Москва", "Санкт-Петербург", "Магазины", "Личный заказ"].map((t) => (
@@ -323,11 +304,8 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-wrap gap-4">
-          <BtnLink to="/kak-kupit">Как купить</BtnLink>
-          <BtnLink to="/kontakty" variant="outline">
-            Связаться
-          </BtnLink>
+        <div className="mt-12">
+          <BtnLink to="/how-to-buy">Как купить</BtnLink>
         </div>
       </Section>
 
@@ -335,37 +313,39 @@ function Home() {
       <Section>
         <SectionHeading
           eyebrow="Социальные сети"
-          title="Из жизни Лесных устриц"
+          title="Из жизни «Лесных устриц»"
           align="center"
         />
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {[0, 1, 2, 3, 4, 5].map((i) => (
-            <ImagePlaceholder key={i} alt="Фото из жизни бренда" ratio="square" label="Фото" />
+            <ImagePlaceholder key={i} alt="Фото бренда" ratio="square" label="Фото" />
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <BtnLink to="/kontakty" variant="outline">
+          <BtnLink to="/contacts" variant="outline">
             Перейти в Instagram
           </BtnLink>
         </div>
       </Section>
 
-      {/* CONTACTS */}
+      {/* CONTACT */}
       <Section tone="forest">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow text-sage">Контакты</p>
-            <h2 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">Связаться с нами</h2>
+            <h2 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">Контакты</h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-sage">
               Контактные данные будут добавлены перед публикацией сайта.
             </p>
+            <div className="mt-8">
+              <BtnLink to="/contacts" variant="invert">
+                Связаться
+              </BtnLink>
+            </div>
           </div>
           <dl className="grid gap-6 sm:grid-cols-2">
-            {["Телефон", "Instagram", "Адрес", "Другие контакты"].map((t) => (
-              <div key={t} className="border-t border-sage/30 pt-4">
-                <dt className="eyebrow text-sage">{t}</dt>
-                <dd className="mt-2 text-primary-foreground/85">Уточняется</dd>
-              </div>
+            {contactFields.map((t) => (
+              <ContactBlock key={t} label={t} invert />
             ))}
           </dl>
         </div>
