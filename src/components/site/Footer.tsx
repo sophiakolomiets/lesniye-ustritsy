@@ -12,8 +12,8 @@ export function Footer() {
             <span className="font-display text-2xl">Лесные устрицы</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sage">
-            Дикорастущие грибы и лесные продукты северного леса. Семейный бренд Андрея
-            Ильича Егорова. Винницы, север Ленинградской области.
+            Дикорастущие грибы и лесные продукты северного края. Личный бренд Андрея
+            Егорова.
           </p>
         </div>
 
@@ -33,13 +33,12 @@ export function Footer() {
         <div>
           <p className="eyebrow text-sage">Контакты</p>
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/85">
-            <li>Телефон — уточняется</li>
-            <li>Instagram — будет подключён</li>
-            <li>Адрес — уточняется</li>
+            <li><a href="tel:+79219972000" className="hover:text-sage">+7 921 997-20-00</a></li>
+            <li><a href="mailto:9972000@gmail.com" className="hover:text-sage">9972000@gmail.com</a></li>
+            <li>Instagram — @_griboedoff</li>
           </ul>
           <p className="mt-6 text-xs text-sage">
-            Версия сайта 0.1 — прототип. Тексты, фотографии, цены и контакты будут
-            заменены.
+            Версия 0.1 — визуальный прототип. Фотографии и данные каталога будут уточняться.
           </p>
         </div>
       </div>

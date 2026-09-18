@@ -1,15 +1,15 @@
 import type { Product } from "@/data/products";
+import { Link } from "@tanstack/react-router";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
 export function ProductCard({ product, image }: { product: Product; image?: string }) {
   return (
     <article className="group flex h-full flex-col border border-border bg-card transition-colors hover:border-primary/40">
-      <ImagePlaceholder
-        src={image}
-        alt={product.name}
-        ratio="square"
-        label="Фото продукта"
-      />
+      {image ? (
+        <ImagePlaceholder src={image} alt={product.name} ratio="square" label="Фото продукта" />
+      ) : (
+        <ImagePlaceholder alt={product.name} ratio="square" label="Фото продукта" />
+      )}
       <div className="flex flex-1 flex-col p-6">
         <p className="eyebrow">{product.category}</p>
         <h3 className="mt-2 font-display text-2xl leading-tight">{product.name}</h3>
@@ -21,7 +21,7 @@ export function ProductCard({ product, image }: { product: Product; image?: stri
             {product.note}
           </p>
         ) : null}
-        <dl className="mt-6 space-y-1 border-t border-border pt-4 text-sm">
+        <dl className="mt-6 space-y-1 border-t border-border pt-4 text-sm" aria-label="Временные данные прототипа">
           <div className="flex justify-between gap-4">
             <dt className="text-muted-foreground">Цена</dt>
             <dd className="font-medium">{product.price}</dd>
@@ -31,12 +31,13 @@ export function ProductCard({ product, image }: { product: Product; image?: stri
             <dd className="font-medium">{product.availability}</dd>
           </div>
         </dl>
-        <button
-          type="button"
+        <Link
+          to="/products/$slug"
+          params={{ slug: product.slug }}
           className="mt-5 w-fit text-xs font-semibold uppercase tracking-[0.16em] text-primary underline decoration-sage underline-offset-8 hover:decoration-primary"
         >
           Подробнее
-        </button>
+        </Link>
       </div>
     </article>
   );

@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Семейный бренд Андрея Егорова: дикорастущие грибы и лесные продукты из Винниц, север Ленинградской области.",
+          "Личный бренд Андрея Егорова: дикорастущие грибы и лесные продукты северного края.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
