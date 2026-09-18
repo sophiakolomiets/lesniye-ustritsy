@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KakKupitRouteImport } from './routes/kak-kupit'
+import { Route as KontaktyRouteImport } from './routes/kontakty'
+import { Route as LesaRouteImport } from './routes/lesa'
+import { Route as OBrendeRouteImport } from './routes/o-brende'
+import { Route as ProdukciyaRouteImport } from './routes/produkciya'
+import { Route as ReceptyRouteImport } from './routes/recepty'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KakKupitRoute = KakKupitRouteImport.update({
+  id: '/kak-kupit',
+  path: '/kak-kupit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktyRoute = KontaktyRouteImport.update({
+  id: '/kontakty',
+  path: '/kontakty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LesaRoute = LesaRouteImport.update({
+  id: '/lesa',
+  path: '/lesa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OBrendeRoute = OBrendeRouteImport.update({
+  id: '/o-brende',
+  path: '/o-brende',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdukciyaRoute = ProdukciyaRouteImport.update({
+  id: '/produkciya',
+  path: '/produkciya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReceptyRoute = ReceptyRouteImport.update({
+  id: '/recepty',
+  path: '/recepty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kak-kupit': typeof KakKupitRoute
+  '/kontakty': typeof KontaktyRoute
+  '/lesa': typeof LesaRoute
+  '/o-brende': typeof OBrendeRoute
+  '/produkciya': typeof ProdukciyaRoute
+  '/recepty': typeof ReceptyRoute
+  '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kak-kupit': typeof KakKupitRoute
+  '/kontakty': typeof KontaktyRoute
+  '/lesa': typeof LesaRoute
+  '/o-brende': typeof OBrendeRoute
+  '/produkciya': typeof ProdukciyaRoute
+  '/recepty': typeof ReceptyRoute
+  '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kak-kupit': typeof KakKupitRoute
+  '/kontakty': typeof KontaktyRoute
+  '/lesa': typeof LesaRoute
+  '/o-brende': typeof OBrendeRoute
+  '/produkciya': typeof ProdukciyaRoute
+  '/recepty': typeof ReceptyRoute
+  '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/kak-kupit'
+    | '/kontakty'
+    | '/lesa'
+    | '/o-brende'
+    | '/produkciya'
+    | '/recepty'
+    | '/products/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/kak-kupit'
+    | '/kontakty'
+    | '/lesa'
+    | '/o-brende'
+    | '/produkciya'
+    | '/recepty'
+    | '/products/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/kak-kupit'
+    | '/kontakty'
+    | '/lesa'
+    | '/o-brende'
+    | '/produkciya'
+    | '/recepty'
+    | '/products/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KakKupitRoute: typeof KakKupitRoute
+  KontaktyRoute: typeof KontaktyRoute
+  LesaRoute: typeof LesaRoute
+  OBrendeRoute: typeof OBrendeRoute
+  ProdukciyaRoute: typeof ProdukciyaRoute
+  ReceptyRoute: typeof ReceptyRoute
+  ProductsSlugRoute: typeof ProductsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kak-kupit': {
+      id: '/kak-kupit'
+      path: '/kak-kupit'
+      fullPath: '/kak-kupit'
+      preLoaderRoute: typeof KakKupitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakty': {
+      id: '/kontakty'
+      path: '/kontakty'
+      fullPath: '/kontakty'
+      preLoaderRoute: typeof KontaktyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lesa': {
+      id: '/lesa'
+      path: '/lesa'
+      fullPath: '/lesa'
+      preLoaderRoute: typeof LesaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-brende': {
+      id: '/o-brende'
+      path: '/o-brende'
+      fullPath: '/o-brende'
+      preLoaderRoute: typeof OBrendeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produkciya': {
+      id: '/produkciya'
+      path: '/produkciya'
+      fullPath: '/produkciya'
+      preLoaderRoute: typeof ProdukciyaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recepty': {
+      id: '/recepty'
+      path: '/recepty'
+      fullPath: '/recepty'
+      preLoaderRoute: typeof ReceptyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KakKupitRoute: KakKupitRoute,
+  KontaktyRoute: KontaktyRoute,
+  LesaRoute: LesaRoute,
+  OBrendeRoute: OBrendeRoute,
+  ProdukciyaRoute: ProdukciyaRoute,
+  ReceptyRoute: ReceptyRoute,
+  ProductsSlugRoute: ProductsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
