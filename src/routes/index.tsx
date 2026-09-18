@@ -5,7 +5,7 @@ import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { ProductCard } from "@/components/site/ProductCard";
 import { RecipeCard } from "@/components/site/RecipeCard";
 import { ReviewsPlaceholder } from "@/components/site/ReviewsPlaceholder";
-import { ReviewsHeading, Section, SectionHeading } from "@/components/site/SectionExports";
+import { Section, SectionHeading } from "@/components/site/Section";
 import { products } from "@/data/products";
 import heroForest from "@/assets/hero-forest.jpg";
 import portrait from "@/assets/portrait-andrey.jpg";
@@ -299,7 +299,7 @@ function Home() {
 
       {/* REVIEWS */}
       <Section>
-        <ReviewsHeading />
+        <SectionHeading eyebrow="Отзывы" title="Что говорят наши клиенты" align="center" />
         <div className="mt-12">
           <ReviewsPlaceholder />
         </div>
