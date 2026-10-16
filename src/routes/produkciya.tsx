@@ -3,8 +3,9 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { ProductCategory } from "@/components/site/ProductCategory";
 import { BtnLink } from "@/components/site/Btn";
-import { products, productCategories } from "@/data/products";
-import featured from "@/assets/featured-marinated.jpg";
+import { products, productCategories, PRICE_NOTICE } from "@/data/products";
+import featuredAsset from "@/assets/photos/featured-brand.jpeg.asset.json";
+const featured = featuredAsset.url;
 
 export const Route = createFileRoute("/produkciya")({
   head: () => ({
@@ -33,9 +34,9 @@ function ProductsPage() {
       <PageHero
         eyebrow="Каталог"
         title="Продукция"
-        intro="Ассортимент прототипа. Цены, наличие и фотографии будут добавлены позже."
+        intro="Грибы, ягоды и продукты из них — по каталогу 2026 года. Наличие уточняйте при заказе."
         image={featured}
-        imageAlt="Маринованные белые грибы"
+        imageAlt="Белые маринованные — визитная карточка бренда"
       />
       <Section>
         <div className="space-y-16">
@@ -45,6 +46,9 @@ function ProductsPage() {
             return <ProductCategory key={category} title={category} products={items} />;
           })}
         </div>
+        <p className="mt-12 max-w-2xl border-t border-border pt-5 text-xs leading-relaxed text-muted-foreground">
+          {PRICE_NOTICE}
+        </p>
         <div className="mt-16 flex flex-wrap gap-4">
           <BtnLink to="/kak-kupit">Как купить</BtnLink>
           <BtnLink to="/kontakty" variant="outline">

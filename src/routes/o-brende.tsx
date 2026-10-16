@@ -3,7 +3,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { BtnLink } from "@/components/site/Btn";
 import { FirIcon } from "@/components/site/FirIcon";
-import portrait from "@/assets/portrait-andrey.jpg";
+import portraitAsset from "@/assets/photos/andrey-egorov.jpeg.asset.json";
+const portrait = portraitAsset.url;
 
 export const Route = createFileRoute("/o-brende")({
   head: () => ({
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/o-brende")({
       {
         name: "description",
         content:
-          "Личный бренд Андрея Ильича Егорова: сбор, отбор и переработка дикорастущих грибов северного леса.",
+          "Личный бренд Андрея Егорова: сбор, отбор и переработка дикорастущих грибов северного леса.",
       },
       { property: "og:title", content: "О бренде — Лесные устрицы" },
       {
@@ -38,9 +39,10 @@ function AboutPage() {
       <PageHero
         eyebrow="О бренде"
         title="Человек, который знает этот лес"
-        intro="За брендом «Лесные устрицы» стоит Андрей Ильич Егоров. Многие годы он собирает и перерабатывает дикорастущие грибы и другие лесные продукты."
+        intro="За брендом «Лесные устрицы» стоит Андрей Егоров. Многие годы он собирает и перерабатывает дикорастущие грибы и другие лесные продукты."
         image={portrait}
-        imageAlt="Портрет Андрея Егорова"
+        imageAlt="Андрей Егоров"
+        imageRatio="tall"
       />
       <Section>
         <div className="grid gap-12 lg:grid-cols-2">

@@ -8,7 +8,6 @@ export const navItems = [
   { to: "/o-brende", label: "О бренде" },
   { to: "/produkciya", label: "Продукция" },
   { to: "/lesa", label: "О наших лесах" },
-  { to: "/recepty", label: "Рецепты" },
   { to: "/kak-kupit", label: "Как купить" },
   { to: "/kontakty", label: "Контакты" },
 ] as const;
