@@ -15,7 +15,6 @@ import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as LesaRouteImport } from './routes/lesa'
 import { Route as OBrendeRouteImport } from './routes/o-brende'
 import { Route as ProdukciyaRouteImport } from './routes/produkciya'
-import { Route as ReceptyRouteImport } from './routes/recepty'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -48,11 +47,6 @@ const ProdukciyaRoute = ProdukciyaRouteImport.update({
   path: '/produkciya',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReceptyRoute = ReceptyRouteImport.update({
-  id: '/recepty',
-  path: '/recepty',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
@@ -66,7 +60,6 @@ export interface FileRoutesByFullPath {
   '/lesa': typeof LesaRoute
   '/o-brende': typeof OBrendeRoute
   '/produkciya': typeof ProdukciyaRoute
-  '/recepty': typeof ReceptyRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesByTo {
@@ -76,7 +69,6 @@ export interface FileRoutesByTo {
   '/lesa': typeof LesaRoute
   '/o-brende': typeof OBrendeRoute
   '/produkciya': typeof ProdukciyaRoute
-  '/recepty': typeof ReceptyRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesById {
@@ -87,7 +79,6 @@ export interface FileRoutesById {
   '/lesa': typeof LesaRoute
   '/o-brende': typeof OBrendeRoute
   '/produkciya': typeof ProdukciyaRoute
-  '/recepty': typeof ReceptyRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRouteTypes {
@@ -99,7 +90,6 @@ export interface FileRouteTypes {
     | '/lesa'
     | '/o-brende'
     | '/produkciya'
-    | '/recepty'
     | '/products/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -109,7 +99,6 @@ export interface FileRouteTypes {
     | '/lesa'
     | '/o-brende'
     | '/produkciya'
-    | '/recepty'
     | '/products/$slug'
   id:
     | '__root__'
@@ -119,7 +108,6 @@ export interface FileRouteTypes {
     | '/lesa'
     | '/o-brende'
     | '/produkciya'
-    | '/recepty'
     | '/products/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -130,7 +118,6 @@ export interface RootRouteChildren {
   LesaRoute: typeof LesaRoute
   OBrendeRoute: typeof OBrendeRoute
   ProdukciyaRoute: typeof ProdukciyaRoute
-  ReceptyRoute: typeof ReceptyRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
 }
 
@@ -178,13 +165,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProdukciyaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/recepty': {
-      id: '/recepty'
-      path: '/recepty'
-      fullPath: '/recepty'
-      preLoaderRoute: typeof ReceptyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
@@ -202,7 +182,6 @@ const rootRouteChildren: RootRouteChildren = {
   LesaRoute: LesaRoute,
   OBrendeRoute: OBrendeRoute,
   ProdukciyaRoute: ProdukciyaRoute,
-  ReceptyRoute: ReceptyRoute,
   ProductsSlugRoute: ProductsSlugRoute,
 }
 export const routeTree = rootRouteImport

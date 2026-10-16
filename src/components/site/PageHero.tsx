@@ -7,6 +7,7 @@ export function PageHero({
   intro,
   image,
   imageAlt,
+  imageRatio = "landscape",
   children,
 }: {
   eyebrow: string;
@@ -14,6 +15,7 @@ export function PageHero({
   intro?: string;
   image?: string;
   imageAlt?: string;
+  imageRatio?: "landscape" | "tall" | "portrait" | "wide";
   children?: ReactNode;
 }) {
   return (
@@ -26,7 +28,7 @@ export function PageHero({
           {children ? <div className="mt-8">{children}</div> : null}
         </div>
         {image ? (
-          <ImagePlaceholder src={image} alt={imageAlt ?? "Тематическое изображение"} ratio="landscape" />
+          <ImagePlaceholder src={image} alt={imageAlt ?? "Тематическое изображение"} ratio={imageRatio} className={imageRatio === "tall" ? "mx-auto w-full max-w-md" : ""} />
         ) : (
           <ImagePlaceholder alt={imageAlt ?? "Изображение будет добавлено"} ratio="landscape" />
         )}
