@@ -2,7 +2,8 @@ import type { Product } from "@/data/products";
 import { Link } from "@tanstack/react-router";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
-export function ProductCard({ product, image }: { product: Product; image?: string }) {
+export function ProductCard({ product }: { product: Product }) {
+  const image = product.image;
   return (
     <article className="group flex h-full flex-col border border-border bg-card transition-colors hover:border-primary/40">
       {image ? (
@@ -13,7 +14,8 @@ export function ProductCard({ product, image }: { product: Product; image?: stri
       <div className="flex flex-1 flex-col p-6">
         <p className="eyebrow">{product.category}</p>
         <h3 className="mt-2 font-display text-2xl leading-tight">{product.name}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {product.pack ? <p className="mt-1 text-xs uppercase tracking-[0.12em] text-muted-foreground">{product.pack}</p> : null}
+        <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-muted-foreground">
           {product.description}
         </p>
         {product.note ? (
@@ -21,7 +23,7 @@ export function ProductCard({ product, image }: { product: Product; image?: stri
             {product.note}
           </p>
         ) : null}
-        <dl className="mt-6 space-y-1 border-t border-border pt-4 text-sm" aria-label="Временные данные прототипа">
+        <dl className="mt-6 space-y-1 border-t border-border pt-4 text-sm">
           <div className="flex justify-between gap-4">
             <dt className="text-muted-foreground">Цена</dt>
             <dd className="font-medium">{product.price}</dd>

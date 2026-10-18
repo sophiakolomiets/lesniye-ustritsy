@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { BtnLink } from "@/components/site/Btn";
-import { products } from "@/data/products";
+import { products, PRICE_NOTICE } from "@/data/products";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -49,10 +49,11 @@ function ProductPage() {
   return (
     <Section>
       <div className="grid gap-12 lg:grid-cols-2">
-        <ImagePlaceholder alt={product.name} ratio="square" label="Фото продукта" />
+        <ImagePlaceholder src={product.image} alt={product.name} ratio="square" label="Фото будет добавлено" />
         <div>
           <p className="eyebrow">{product.category}</p>
           <h1 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">{product.name}</h1>
+          {product.pack ? <p className="mt-3 text-sm uppercase tracking-[0.12em] text-muted-foreground">{product.pack}</p> : null}
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
             {product.description}
           </p>
@@ -72,7 +73,7 @@ function ProductPage() {
             </div>
           </dl>
           <p className="mt-4 text-xs text-muted-foreground">
-            Временные данные прототипа. Будут заменены реальными значениями.
+            {PRICE_NOTICE}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <BtnLink to="/kak-kupit">Как купить</BtnLink>
