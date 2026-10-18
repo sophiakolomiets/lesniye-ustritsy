@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { ContactBlock } from "@/components/site/ContactBlock";
+import { contacts } from "@/data/contacts";
 
 export const Route = createFileRoute("/kontakty")({
   head: () => ({
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/kontakty")({
       { title: "Контакты — Лесные устрицы" },
       {
         name: "description",
-        content: "Контакты бренда «Лесные устрицы». Данные будут добавлены перед публикацией.",
+        content: "Контакты бренда «Лесные устрицы». Телефон, Instagram, email и адрес.",
       },
       { property: "og:title", content: "Контакты — Лесные устрицы" },
       {
@@ -29,13 +30,19 @@ function ContactsPage() {
       <PageHero
         eyebrow="Контакты"
         title="Связаться с нами"
-        intro="Контактные данные будут добавлены перед публикацией сайта."
+        intro="Задайте вопрос о продукции или оставьте заявку на заказ."
       />
       <Section>
         <div className="grid max-w-3xl gap-8 sm:grid-cols-2">
-          {["Телефон", "Instagram", "Адрес", "Другие контакты"].map((label) => (
-            <ContactBlock key={label} label={label}>
-              Уточняется
+          {contacts.map((c) => (
+            <ContactBlock key={c.label} label={c.label}>
+              {c.href ? (
+                <a href={c.href} className="break-words hover:text-primary" {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                  {c.value}
+                </a>
+              ) : (
+                c.value
+              )}
             </ContactBlock>
           ))}
         </div>
