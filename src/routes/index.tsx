@@ -160,14 +160,17 @@ function Home() {
         <SectionHeading
           eyebrow="Каталог"
           title="Наша продукция"
-          intro="Сушёные, солёные, маринованные и замороженные грибы, готовые грибные продукты, лесные ягоды. Цены и наличие будут указаны позже."
+          intro="Маринованные, солёные, сушёные и замороженные грибы, лесные ягоды и продукты из них."
         />
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {catalogue.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
-        <div className="mt-12">
+        <p className="mt-10 max-w-2xl text-xs leading-relaxed text-muted-foreground">
+          {PRICE_NOTICE}
+        </p>
+        <div className="mt-10">
           <BtnLink to="/produkciya" variant="outline">
             Весь каталог
           </BtnLink>
@@ -179,18 +182,15 @@ function Home() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
           <ImagePlaceholder
             src={featured}
-            alt="Белые маринованные грибы"
-            ratio="landscape"
-            label="Фото продукта"
+            alt="Белые маринованные — визитная карточка бренда"
+            ratio="wide"
           />
           <div>
             <p className="eyebrow text-sage">Визитная карточка бренда</p>
-            <h2 className="mt-4 text-4xl leading-[1.05] sm:text-6xl">
-              Белые маринованные
-            </h2>
+            <h2 className="mt-4 text-4xl leading-[1.05] sm:text-6xl">{signature.name}</h2>
+            <p className="mt-3 text-xs uppercase tracking-[0.14em] text-sage">{signature.pack}</p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-sage">
-              {signature.description} Главный продукт «Лесных устриц» — с него чаще
-              всего начинается знакомство с брендом.
+              {signature.description}
             </p>
             <dl className="mt-8 grid max-w-xs gap-2 border-t border-sage/30 pt-5 text-sm text-primary-foreground/90">
               <div className="flex justify-between">
@@ -202,12 +202,14 @@ function Home() {
                 <dd>{signature.availability}</dd>
               </div>
             </dl>
+            <p className="mt-4 max-w-md text-xs leading-relaxed text-sage/90">{PRICE_NOTICE}</p>
             <div className="mt-9 flex flex-wrap gap-4">
               <BtnLink to="/kak-kupit" variant="invert">
                 Как купить
               </BtnLink>
               <Link
-                to="/produkciya"
+                to="/products/$slug"
+                params={{ slug: signature.slug }}
                 className="self-center text-xs font-semibold uppercase tracking-[0.16em] text-sage underline underline-offset-8"
               >
                 Подробнее
@@ -221,7 +223,7 @@ function Home() {
       <Section>
         <SectionHeading
           eyebrow="Качество"
-          title="Почему это другой продукт"
+          title="Качество, которое начинается в лесу"
           align="center"
         />
         <FirDivider className="mt-8" />
@@ -270,7 +272,7 @@ function Home() {
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/90">
             Тихие северные леса, мох, ельники и болота. Здесь всё зависит от сезона,
-            погоды и знания мест — и именно поэтому у каждого урожая свой характер.
+            погоды и знания мест.
           </p>
           <div className="mt-10">
             <BtnLink to="/lesa" variant="invert">
@@ -280,48 +282,15 @@ function Home() {
         </div>
       </section>
 
-      {/* RECIPES */}
-      <Section tone="sand">
-        <SectionHeading eyebrow="Кухня" title="Рецепты и полезности" />
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {["Блюда с белыми грибами", "Рецепты с груздями", "Соус из белых грибов"].map(
-            (t) => (
-              <RecipeCard key={t} title={t} />
-            ),
-          )}
-        </div>
-        <div className="mt-12">
-          <BtnLink to="/recepty" variant="outline">
-            Все материалы
-          </BtnLink>
-        </div>
-      </Section>
-
-      {/* REVIEWS */}
-      <Section>
-        <SectionHeading eyebrow="Отзывы" title="Что говорят наши клиенты" align="center" />
-        <div className="mt-12">
-          <ReviewsPlaceholder />
-        </div>
-      </Section>
-
       {/* HOW TO BUY */}
       <Section tone="sand">
         <SectionHeading
           eyebrow="Покупка"
           title="Как купить?"
-          intro="Мы работаем с частными покупателями напрямую. Сайт ведёт к личному контакту — так проще подобрать продукт и обсудить наличие."
+          intro="Мы работаем с покупателями напрямую — так проще подобрать продукт и обсудить заказ."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {["Москва", "Санкт-Петербург", "Магазины", "Личный заказ"].map((t) => (
-            <div key={t} className="border border-border bg-card p-7">
-              <FirIcon className="h-6 w-4 text-sage" />
-              <h3 className="mt-4 text-2xl">{t}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Информация будет добавлена.
-              </p>
-            </div>
-          ))}
+        <div className="mt-14">
+          <BuyOptions />
         </div>
         <div className="mt-12 flex flex-wrap gap-4">
           <BtnLink to="/kak-kupit">Как купить</BtnLink>
@@ -344,9 +313,9 @@ function Home() {
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <BtnLink to="/kontakty" variant="outline">
+          <BtnAnchor href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" variant="outline">
             Перейти в Instagram
-          </BtnLink>
+          </BtnAnchor>
         </div>
       </Section>
 
@@ -356,15 +325,20 @@ function Home() {
           <div>
             <p className="eyebrow text-sage">Контакты</p>
             <h2 className="mt-4 text-4xl leading-[1.05] sm:text-5xl">Связаться с нами</h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-sage">
-              Контактные данные будут добавлены перед публикацией сайта.
-            </p>
           </div>
           <dl className="grid gap-6 sm:grid-cols-2">
-            {["Телефон", "Instagram", "Адрес", "Другие контакты"].map((t) => (
-              <div key={t} className="border-t border-sage/30 pt-4">
-                <dt className="eyebrow text-sage">{t}</dt>
-                <dd className="mt-2 text-primary-foreground/85">Уточняется</dd>
+            {contacts.map((c) => (
+              <div key={c.label} className="border-t border-sage/30 pt-4">
+                <dt className="eyebrow text-sage">{c.label}</dt>
+                <dd className="mt-2 break-words text-primary-foreground/85">
+                  {c.href ? (
+                    <a href={c.href} className="hover:text-sage" {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                      {c.value}
+                    </a>
+                  ) : (
+                    c.value
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
