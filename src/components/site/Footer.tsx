@@ -9,7 +9,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <FirIcon className="h-7 w-5 text-sage" />
-            <span className="font-display text-2xl">Лесные устрицы</span>
+            <span className="font-display text-2xl">Ферма «Лесные устрицы»</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sage">
             Дикорастущие грибы и лесные продукты северного края. Личный бренд Андрея
@@ -35,11 +35,9 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/85">
             <li><a href="tel:+79219972000" className="hover:text-sage">+7 921 997-20-00</a></li>
             <li><a href="mailto:9972000@gmail.com" className="hover:text-sage">9972000@gmail.com</a></li>
-            <li>Instagram — @_griboedoff</li>
+            <li><a href="https://www.instagram.com/_griboedoff/" target="_blank" rel="noopener noreferrer" className="hover:text-sage">Instagram — @_griboedoff</a></li>
+            <li>Ленинградская обл., пос. Винницы, ул. Садовая, д. 3</li>
           </ul>
-          <p className="mt-6 text-xs text-sage">
-            Версия 0.1 — визуальный прототип. Фотографии и данные каталога будут уточняться.
-          </p>
         </div>
       </div>
     </footer>
