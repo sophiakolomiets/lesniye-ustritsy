@@ -1,15 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BtnLink } from "@/components/site/Btn";
+import { BtnAnchor, BtnLink } from "@/components/site/Btn";
 import { FirDivider, FirIcon } from "@/components/site/FirIcon";
 import { ImagePlaceholder } from "@/components/site/ImagePlaceholder";
 import { ProductCard } from "@/components/site/ProductCard";
-import { RecipeCard } from "@/components/site/RecipeCard";
-import { ReviewsPlaceholder } from "@/components/site/ReviewsPlaceholder";
+import { BuyOptions } from "@/components/site/BuyOptions";
 import { Section, SectionHeading } from "@/components/site/Section";
-import { products } from "@/data/products";
+import { products, PRICE_NOTICE } from "@/data/products";
+import { contacts, INSTAGRAM_URL } from "@/data/contacts";
 import heroForest from "@/assets/hero-forest.jpg";
-import portrait from "@/assets/portrait-andrey.jpg";
-import featured from "@/assets/featured-marinated.jpg";
+import portraitAsset from "@/assets/photos/andrey-egorov.jpeg.asset.json";
+import featuredAsset from "@/assets/photos/featured-brand.jpeg.asset.json";
+const portrait = portraitAsset.url;
+const featured = featuredAsset.url;
 import forestsWide from "@/assets/forests-wide.jpg";
 
 export const Route = createFileRoute("/")({
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Дикорастущие грибы и лесные продукты северного леса. Семейный бренд Андрея Ильича Егорова, Винницы, Ленинградская область.",
+          "Дикорастущие грибы и лесные продукты северного леса. Личный бренд Андрея Егорова, Винницы, Ленинградская область.",
       },
       { property: "og:title", content: "Лесные устрицы — дикорастущие грибы северного леса" },
       {
@@ -27,6 +29,8 @@ export const Route = createFileRoute("/")({
         content:
           "Дикорастущие грибы и лесные продукты северного леса. Собственный сбор, отбор и переработка.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -67,8 +71,7 @@ function Home() {
             Дикорастущие грибы и лесные продукты северного леса
           </p>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-primary-foreground/85 sm:text-base">
-            Село Винницы, северо-восток Ленинградской области. Личный бренд Андрея
-            Ильича Егорова: собственный сбор, тщательный отбор и переработка лесных
+            Село Винницы, северо-восток Ленинградской области. Личный бренд Андрея Егорова: собственный сбор, тщательный отбор и переработка лесных
             даров.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
@@ -89,7 +92,7 @@ function Home() {
               Человек, который знает этот лес
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              За брендом стоит Андрей Ильич Егоров. Многие годы он собирает и
+              За брендом стоит Андрей Егоров. Многие годы он собирает и
               перерабатывает дикорастущие грибы и другие лесные продукты в северной
               части Ленинградской области.
             </p>
@@ -108,12 +111,9 @@ function Home() {
             <ImagePlaceholder
               src={portrait}
               alt="Портрет Андрея Егорова"
-              ratio="portrait"
+              ratio="tall"
               label="Портрет"
             />
-            <p className="mt-3 text-xs text-muted-foreground">
-              Временное изображение. Будет заменено реальной фотографией.
-            </p>
           </div>
         </div>
       </Section>
